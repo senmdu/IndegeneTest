@@ -13,6 +13,7 @@ import AVKit
 
 class NewsFeedView: UIViewController {
 
+    // MARK:- UI Properties
     var collectionView: UICollectionView = {
        
         let collection = UICollectionView(frame: .zero, collectionViewLayout: PintrestLayout())
@@ -22,6 +23,8 @@ class NewsFeedView: UIViewController {
     }()
     
     var data = [NewsFeedModel]()
+    
+    // MARK: - LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +55,8 @@ class NewsFeedView: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - UI Methods
+    
     fileprivate func setupUI() {
         
         self.view.addSubview(collectionView)
@@ -74,6 +79,8 @@ class NewsFeedView: UIViewController {
         let heightConstraint = NSLayoutConstraint(item: collectionView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1, constant: 0)
         view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
+    
+    // MARK: - Data Binding&Loading Methods
     
     fileprivate func loadData() {
         
@@ -98,14 +105,11 @@ class NewsFeedView: UIViewController {
         NewsFeedModel(image: Utilities.videoSnapshot(filePathLocal: video), caption: "Video 3", videoUrl: video, pdfUrl: nil)]
         self.collectionView.reloadData()
     }
-    
 
-    
-    deinit {
-        print("deinit viewcontroller")
-    }
 
 }
+
+    // MARK: - Delegate Methods
 
 extension NewsFeedView : UICollectionViewDelegate,UICollectionViewDataSource,PintrestLayoutDelegate,UIScrollViewDelegate{
     
